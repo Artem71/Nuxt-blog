@@ -4,7 +4,7 @@
     :default-active="$route.path"
     router
     >
-    <el-menu-item index="/admin/">
+    <el-menu-item index="/admin">
       <i class="el-icon-menu"></i>
       <span>Аналитика</span>
     </el-menu-item>
