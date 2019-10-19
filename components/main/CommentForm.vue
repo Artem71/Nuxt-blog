@@ -5,31 +5,31 @@
     :rules="rules"
     @submit.native.prevent="onSubmit"
   >
-  <h1>Добавить комментарий</h1>
+    <h1>Добавить комментарий</h1>
 
-  <el-form-item label="Ваше имя" prop="name">
-    <el-input v-model.trim="controls.name" />
-  </el-form-item>
+    <el-form-item label="Ваше имя" prop="name">
+      <el-input v-model.trim="controls.name" />
+    </el-form-item>
 
-  <el-form-item label="Текст комментария" prop="text">
-    <el-input
-      v-model.trim="controls.text"
-      type="textarea"
-      resize="none"
-      :rows="2"
-    />
-  </el-form-item>
-  <el-form-item>
-    <el-button
-      type="primary"
-      native-type="submit"
-      round
-      :loading="loading"
-      >
-      Добавить комментарий
-    </el-button>
-  </el-form-item>
-</el-form>
+    <el-form-item label="Текст комментария" prop="text">
+      <el-input
+        v-model.trim="controls.text"
+        type="textarea"
+        resize="none"
+        :rows="2"
+      />
+    </el-form-item>
+    <el-form-item>
+      <el-button
+        type="primary"
+        native-type="submit"
+        round
+        :loading="loading"
+        >
+        Добавить комментарий
+      </el-button>
+    </el-form-item>
+  </el-form>
 </template>
 
 <script>
