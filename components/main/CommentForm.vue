@@ -6,17 +6,17 @@
     @submit.native.prevent="onSubmit"
   >
   <h1>Добавить комментарий</h1>
+
   <el-form-item label="Ваше имя" prop="name">
-    <el-input v-model.trim="controls.name"></el-input>
+    <el-input v-model.trim="controls.name" />
   </el-form-item>
 
   <el-form-item label="Текст комментария" prop="text">
     <el-input
+      v-model.trim="controls.text"
       type="textarea"
       resize="none"
       :rows="2"
-      v-model="controls.text"
-
     />
   </el-form-item>
   <el-form-item>
@@ -24,8 +24,9 @@
       type="primary"
       native-type="submit"
       round
+      :loading="loading"
       >
-      Create
+      Добавить комментарий
     </el-button>
   </el-form-item>
 </el-form>
@@ -35,6 +36,7 @@
 export default {
   data() {
     return {
+      loading: false,
       controls: {
         name: '',
         text: ''
@@ -43,7 +45,7 @@ export default {
         name: [
           { required: true, message: 'Имя не должно быть пустым', trigger: 'blur' }
         ],
-         text: [
+        text: [
           { required: true, message: 'Введите ваш комментарий', trigger: 'blur' }
         ],
       }
@@ -51,11 +53,31 @@ export default {
   },
   methods: {
     onSubmit() {
+
+
       this.$refs.form.validate(valid => {
         if (valid) {
-          console.log('submit!');
+          console.log('ыгиьше')
+          // this.loading = true
+
+          // const formData = {
+          //     name: this.controls.name,
+          //     text: this.controls.text,
+          //     postId: ''
+          //   }
+
+          // try {
+          //   setTimeout(() => {
+          //     this.$message.success('Комментарий добавлен')
+          //     this.$emit('created')
+          //   }, 2000)
+          // } catch (e) {
+          //   this.$message.error('Что-то пошло не так')
+          //   this.loading = false
+          // }
+
         }
-      });
+      })
     }
   }
 }

@@ -30,8 +30,11 @@
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut pariatur quidem laborum dolorem asperiores nesciunt natus necessitatibus ratione voluptas! Vitae.</p>
     </main>
     <footer>
-      <app-comment-form />
-      <div class="comments" v-if="false">
+      <app-comment-form
+        @created="createComment"
+        v-if="canAddComment"
+      />
+      <div class="comments" v-if="true">
         <app-comment
           v-for="comment in 4"
           :key="comment"
@@ -51,6 +54,16 @@ import AppCommentForm from '@/components/main/CommentForm'
 export default {
   validate({params}) {
     return !!params.id
+  },
+  data() {
+    return {
+      canAddComment: true
+    }
+  },
+  methods: {
+    createComment() {
+      this.canAddComment = false
+    }
   },
   components: {
     AppComment,
