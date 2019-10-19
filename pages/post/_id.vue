@@ -30,7 +30,8 @@
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut pariatur quidem laborum dolorem asperiores nesciunt natus necessitatibus ratione voluptas! Vitae.</p>
     </main>
     <footer>
-      <div class="comments" v-if="true">
+      <app-comment-form />
+      <div class="comments" v-if="false">
         <app-comment
           v-for="comment in 4"
           :key="comment"
@@ -45,13 +46,15 @@
 
 <script>
 import AppComment from '@/components/main/Comment'
+import AppCommentForm from '@/components/main/CommentForm'
 
 export default {
   validate({params}) {
     return !!params.id
   },
   components: {
-    AppComment
+    AppComment,
+    AppCommentForm
   }
 }
 </script>
