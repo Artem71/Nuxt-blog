@@ -73,6 +73,13 @@ export default {
         }
       })
     }
+  },
+  mounted() {
+    const {message} = this.$route.query
+
+    if (message === 'login') {
+      this.$message.info('Сперва необходимо войти в систему')
+    }
   }
 }
 </script>
