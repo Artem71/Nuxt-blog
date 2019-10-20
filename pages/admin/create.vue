@@ -26,7 +26,20 @@
       </div>
     </el-dialog>
 
-    <el-button class="mb" type="success" plain @click="showDialog">Предпросмотр</el-button>
+    <el-button class="mb" type="success" plain @click="previewDialog = true">Предпросмотр</el-button>
+
+    <el-upload
+      class="mb"
+      drag
+      ref="upload"
+      action="https://jsonplaceholder.typicode.com/posts/"
+      :on-change="handleImageChange"
+      :auto-upload="false"
+    >
+      <i class="el-icon-upload"></i>
+      <div class="el-upload__text">Перетащите картинку <em>или нажмите</em></div>
+      <div class="el-upload__tip" slot="tip">Файлы с расширением jpg/png</div>
+    </el-upload>
 
     <el-form-item>
       <el-button
@@ -49,6 +62,7 @@ export default {
   layout: 'admin',
   data() {
     return {
+      image: null,
       previewDialog: false,
       loading: false,
       controls: {
@@ -68,28 +82,33 @@ export default {
   methods: {
     onSubmit() {
       this.$refs.form.validate(async valid => {
-        if (valid) {
+        if (valid && this.image) {
           this.loading = true
 
-          try {
-            const formData = {
-              login: this.controls.title,
-              password: this.controls.text
-            }
+          const formData = {
+            title: this.controls.title,
+            text: this.controls.text,
+            image: this.image
+          }
 
+          try {
             await this.$store.dispatch('post/create', formData)
             this.$message.success('Пост успешно создан')
-
+            this.$refs.upload.clearFiles()
+            this.image = null
             this.controls.title = ''
             this.controls.text = ''
           } catch (e) {} finally {
             this.loading = false
+            console.log(1)
           }
+        } else {
+          this.$message.warning('Форма не валидна')
         }
       })
     },
-    showDialog() {
-      this.previewDialog = true
+    handleImageChange(file, fileList) {
+      this.image = file.raw
     }
   }
 }
