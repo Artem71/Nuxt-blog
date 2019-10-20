@@ -74,8 +74,8 @@ export default {
     }
   },
   methods: {
-    async onSubmit() {
-      this.$refs.form.validate(valid => {
+    onSubmit() {
+      this.$refs.form.validate(async valid => {
         if (valid) {
           this.loading = true
 
@@ -85,10 +85,10 @@ export default {
           }
 
           try {
-            this.$store.dispatch('post/update', formDate)
-            this.loading = false
+            await this.$store.dispatch('post/update', formDate)
+            this.$message.success('Пост успешно обновлен')
             this.controls.text = ''
-          } catch (e) {
+          } catch (e) {} finally {
             this.loading = false
           }
         }

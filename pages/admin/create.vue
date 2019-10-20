@@ -5,14 +5,19 @@
     :rules="rules"
     @submit.native.prevent="onSubmit"
   >
-    <h1>Создать пользователя</h1>
+    <h1>Создать новый пост</h1>
 
-    <el-form-item label="Логин" prop="login">
-      <el-input v-model.trim="controls.login" />
+    <el-form-item label="Название поста" prop="title">
+      <el-input v-model="controls.title" />
     </el-form-item>
 
-    <el-form-item label="Пароль" prop="password" class="mb2">
-      <el-input v-model.trim="controls.password" type="password" />
+    <el-form-item label="Текст в формате *md или *html" prop="text">
+      <el-input
+        v-model="controls.text"
+        type="textarea"
+        resize="none"
+        :rows="10"
+        />
     </el-form-item>
     <el-form-item>
       <el-button
@@ -35,16 +40,15 @@ export default {
     return {
       loading: false,
       controls: {
-        login: '',
-        password: ''
+        title: '',
+        text: ''
       },
       rules: {
-        login: [
-          { required: true, message: 'Логин не должно быть пустым', trigger: 'blur' }
+        title: [
+          { required: true, message: 'Название поста не должно быть пустым', trigger: 'blur' }
         ],
-        password: [
-          { required: true, message: 'Введите ваш пароль', trigger: 'blur' },
-          { min: 6, message: 'Пароль должен быть не менее 6 символов', trigger: 'blur' }
+        text: [
+          { required: true, message: 'Введите ваш текст', trigger: 'blur' }
         ],
       }
     }
@@ -57,17 +61,16 @@ export default {
 
           try {
             const formData = {
-              login: this.controls.login,
-              password: this.controls.password
+              login: this.controls.title,
+              password: this.controls.text
             }
 
-            await this.$store.dispatch('auth/createUser', formData)
-            this.$message.success('Пользователь успешно добавлен')
+            await this.$store.dispatch('post/create', formData)
+            this.$message.success('Пост успешно создан')
 
-            this.controls.login = ''
-            this.controls.password = ''
-            this.loading = false
-          } catch (e) {
+            this.controls.title = ''
+            this.controls.text = ''
+          } catch (e) {} finally {
             this.loading = false
           }
         }

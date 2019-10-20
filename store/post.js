@@ -24,5 +24,12 @@ export const actions = {
   },
   update({}, {text, id}) {
     console.log('update', text)
+  },
+  async create({}, {title, text}) {
+    return await new Promise(resolve => {
+      setTimeout(() => {
+        resolve()
+      }, 1000)
+    })
   }
 }
