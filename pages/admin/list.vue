@@ -70,12 +70,7 @@ export default {
         await this.$store.dispatch('post/remove')
 
         this.posts = this.posts.filter(p => p._id !== id)
-      } catch (e) {
-
-      }
-
-
-
+      } catch (e) {}
     }
   }
 }
