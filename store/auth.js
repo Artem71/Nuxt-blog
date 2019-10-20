@@ -1,10 +1,13 @@
 export const state = () => ({
-  token: true
+  token: null
 })
 
 export const mutations = {
   setToken(state, token) {
     state.token = token
+  },
+  clearToken(state) {
+    state.token = null
   }
 }
 
@@ -19,6 +22,9 @@ export const actions = {
       commit('setError', e, {root: true})
       throw e
     }
+  },
+  logout({commit}) {
+    commit('clearToken')
   },
   createUser({}, formData) {
     try {

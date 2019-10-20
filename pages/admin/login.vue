@@ -77,8 +77,13 @@ export default {
   mounted() {
     const {message} = this.$route.query
 
-    if (message === 'login') {
-      this.$message.info('Сперва необходимо войти в систему')
+    switch(message) {
+      case 'login':
+        this.$message.info('Сперва необходимо войти в систему')
+        break
+      case 'logout':
+        this.$message.success('Вы вышли из системы')
+        break
     }
   }
 }
