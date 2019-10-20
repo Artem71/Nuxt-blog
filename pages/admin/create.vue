@@ -19,6 +19,15 @@
         :rows="10"
         />
     </el-form-item>
+
+    <el-dialog title="Предпросмотр" :visible.sync="previewDialog">
+      <div :key="controls.text">
+        <vue-markdown>{{controls.text}}</vue-markdown>
+      </div>
+    </el-dialog>
+
+    <el-button class="mb" type="success" plain @click="showDialog">Предпросмотр</el-button>
+
     <el-form-item>
       <el-button
         type="primary"
@@ -33,11 +42,14 @@
 </template>
 
 <script>
+import VueMarkdown from 'vue-markdown'
+
 export default {
   middleware: ['admin-auth'],
   layout: 'admin',
   data() {
     return {
+      previewDialog: false,
       loading: false,
       controls: {
         title: '',
@@ -75,8 +87,11 @@ export default {
           }
         }
       })
+    },
+    showDialog() {
+      this.previewDialog = true
     }
-  },
+  }
 }
 </script>
 
