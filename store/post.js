@@ -9,5 +9,8 @@ export const actions = {
         ])
       }, 1000)
     })
+  },
+  remove() {
+    console.log('remove')
   }
 }
