@@ -11,7 +11,6 @@
       :rules="rules"
       @submit.native.prevent="onSubmit"
     >
-
       <el-form-item label="Введите новый текст" prop="text">
         <el-input
           v-model="controls.text"
