@@ -1,3 +1,5 @@
+import axios from 'axios'
+
 export const state = () => ({
   token: true
 })
@@ -13,9 +15,8 @@ export const mutations = {
 
 export const actions = {
   async login({commit, dispatch}, formData) {
-    console.log(this.$axios)
     try {
-      const {token} = this.$axios.$get('/api/auth/admin/login', formData)
+      const {token} = axios.get('/api/auth/admin/login', formData)
       console.log('token', token)
       dispatch('setToken', token)
     } catch (e) {
@@ -39,5 +40,5 @@ export const actions = {
 }
 
 export const getters = {
-  isAuthenticated: state => Boolean(state.token)
+  isAuth: state => Boolean(state.token)
 }
