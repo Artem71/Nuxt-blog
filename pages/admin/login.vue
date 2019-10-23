@@ -85,6 +85,9 @@ export default {
       case 'logout':
         this.$message.success('Вы вышли из системы')
         break
+      case 'session':
+        this.$message.warning('Вреся сесси истекло, пожалуйста зайдите заного')
+        break
     }
   }
 }

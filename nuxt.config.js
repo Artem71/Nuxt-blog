@@ -22,7 +22,8 @@ module.exports = {
   ],
 
   plugins: [
-    '@/plugins/globals'
+    '@/plugins/globals',
+    '@/plugins/axios'
   ],
 
   buildModules: [
@@ -33,7 +34,7 @@ module.exports = {
   ],
 
   axios: {},
-  
+
   build: {
     transpile: [/^element-ui/],
 
