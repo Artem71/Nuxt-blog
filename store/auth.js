@@ -13,8 +13,9 @@ export const mutations = {
 
 export const actions = {
   async login({commit, dispatch}, formData) {
+    console.log(this.$axios)
     try {
-      const {token} = this.$axios.$post('/api/auth/admin/login', formData)
+      const {token} = this.$axios.$get('/api/auth/admin/login', formData)
       console.log('token', token)
       dispatch('setToken', token)
     } catch (e) {
@@ -22,10 +23,7 @@ export const actions = {
       throw e
     }
   },
-  logout({commit}) {
-    commit('clearToken')
-  },
-  createUser({}, formData) {
+  async createUser({commit}, formData) {
     try {
       console.log('createUser', formData)
     } catch (e) {
@@ -34,9 +32,12 @@ export const actions = {
   },
   setToken({commit}, token) {
     commit('setToken', token)
+  },
+  logout({commit}) {
+    commit('clearToken')
   }
 }
 
 export const getters = {
-  isAuth: state => Boolean(state.token)
+  isAuthenticated: state => Boolean(state.token)
 }

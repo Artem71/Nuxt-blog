@@ -67,6 +67,7 @@ export default {
 
             await this.$store.dispatch('auth/login', formData)
             this.$router.push('/admin')
+
           } catch (e) {
             this.loading = false
           }
@@ -77,7 +78,7 @@ export default {
   mounted() {
     const {message} = this.$route.query
 
-    switch(message) {
+    switch (message) {
       case 'login':
         this.$message.info('Сперва необходимо войти в систему')
         break
