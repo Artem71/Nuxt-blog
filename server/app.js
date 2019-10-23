@@ -22,6 +22,6 @@ app.use(bodyParser.json())
 
 app.use('/api/auth', authRoutes)
 app.use('/api/post', postRoutes)
-app.use('/api/comment', commentRoutes)
+app.use('/api/comment', commentRouter)
 
 module.exports = app
