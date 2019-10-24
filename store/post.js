@@ -33,11 +33,7 @@ export const actions = {
       formData.append('text', text)
       formData.append('image', image, image.name)
 
-      return await new Promise(resolve => {
-        setTimeout(() => {
-          resolve()
-        }, 1000)
-      })
+      return await this.$axios.$post('/api/post/admin', formData)
     } catch (e) {
       commit('setError', e, {root: true})
       throw e

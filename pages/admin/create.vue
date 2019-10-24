@@ -100,7 +100,6 @@ export default {
             this.controls.text = ''
           } catch (e) {} finally {
             this.loading = false
-            console.log(1)
           }
         } else {
           this.$message.warning('Форма не валидна')
