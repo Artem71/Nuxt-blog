@@ -1,9 +1,9 @@
-export default function({ $axios, redirect, store }) {
+export default function ({ $axios, redirect, store }) {
 
   $axios.interceptors.request.use(request => {
-    if (store.getters['auth/isAuth'] && !request.header.common['Authorization']) {
+    if (store.getters['auth/isAuthenticated'] && !request.headers.common['Authorization']) {
       const token = store.getters['auth/token']
-      request.header.common['Authorization'] = `Bearer ${token}`
+      request.headers.common['Authorization'] = `Bearer ${token}`
     }
 
     return request
@@ -17,7 +17,7 @@ export default function({ $axios, redirect, store }) {
       }
 
       if (error.response.status === 500) {
-        console.error('Беда')
+        console.error('Server 500 error')
       }
     }
   })

@@ -13,6 +13,7 @@ module.exports.create = async (req, res) => {
     await post.save()
 
     res.status(201).json(comment)
+
   } catch (e) {
     res.status(500).json(e)
   }

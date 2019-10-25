@@ -38,5 +38,5 @@ module.exports.createUser = async (req, res) => {
     await user.save()
     res.status(201).json(user)
   }
-}
 
+}

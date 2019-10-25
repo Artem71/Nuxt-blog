@@ -68,4 +68,3 @@ module.exports.addView = async (req, res) => {
     res.status(500).json(e)
   }
 }
-

@@ -39,7 +39,6 @@ router.delete(
 
 // Base
 // /api/post
-
 router.get('/', ctr.getAll)
 router.get('/:id', ctr.getById)
 router.put('/:id', ctr.addView)
