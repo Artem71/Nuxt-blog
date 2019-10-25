@@ -93,6 +93,9 @@ export default {
         }
       })
     }
+  },
+  mounted() {
+    this.controls.text = this.post.text
   }
 }
 </script>
