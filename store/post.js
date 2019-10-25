@@ -11,6 +11,13 @@ export const actions = {
       commit('setError', e, {root: true})
     }
   },
+  async fetch({commit}) {
+    try {
+      return await this.$axios.$get('/api/post')
+    } catch (e) {
+      commit('setError', e, {root: true})
+    }
+  },
   async remove({commit}, id) {
     try {
       return await this.$axios.$delete(`/api/post/admin/${id}`)
