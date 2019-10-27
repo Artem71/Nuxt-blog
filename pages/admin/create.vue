@@ -60,6 +60,9 @@ import VueMarkdown from 'vue-markdown'
 export default {
   middleware: ['admin-auth'],
   layout: 'admin',
+  head: {
+    title: `Новый пост | ${process.env.appName}`
+  },
   data() {
     return {
       image: null,

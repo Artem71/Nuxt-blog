@@ -20,6 +20,9 @@ import AppAnalyticsChart from '@/components/admin/AnalyticsChart'
 export default {
   middleware: ['admin-auth'],
   layout: 'admin',
+  head: {
+    title: `Аналитика | ${process.env.appName}`
+  },
   async asyncData({store}) {
     const {views, comments} = await store.dispatch('post/getAnalytics')
     return {views, comments}

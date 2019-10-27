@@ -35,6 +35,9 @@
 <script>
 export default {
   layout: 'empty',
+  head: {
+    title: `Вход в панель администратора | ${process.env.appName}`
+  },
   data() {
     return {
       loading: false,
@@ -67,7 +70,7 @@ export default {
 
             await this.$store.dispatch('auth/login', formData)
             this.$router.push('/admin')
-            
+
           } catch (e) {
             this.loading = false
           }
