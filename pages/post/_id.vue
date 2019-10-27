@@ -31,11 +31,12 @@
       <app-comment-form
         @created="createComment"
         v-if="canAddComment"
+        :postId="post._id"
       />
       <div class="comments" v-if="post.comments.length">
         <app-comment
           v-for="comment in post.comments"
-          :key="comment"
+          :key="comment._id"
           :comment="comment"
         />
       </div>
@@ -66,7 +67,8 @@ export default {
     }
   },
   methods: {
-    createComment() {
+    createComment(comment) {
+      this.post.comments.unshift(comment)
       this.canAddComment = false
     }
   },
