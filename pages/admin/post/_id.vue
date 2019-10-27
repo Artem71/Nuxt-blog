@@ -22,11 +22,11 @@
       <div class="mb">
         <i class="el-icon-time"></i>
         <small class="mr">
-          {{ this.post.date.toLocaleString() }}
+          {{ post.date | date }}
         </small>
         <i class="el-icon-view"></i>
         <small>
-          {{ this.post.views }}
+          {{ post.views }}
         </small>
       </div>
       <el-form-item>
