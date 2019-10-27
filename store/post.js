@@ -1,5 +1,3 @@
-import { addView } from "~/server/controllers/post.controller"
-
 const posts = [
   {title: 'Post 1', date: new Date(), views: 22, comments: [1, 2], _id: 'id1'},
   {title: 'Post 2', date: new Date(), views: 22, comments: [1, 2], _id: 'id2'}
@@ -11,6 +9,7 @@ export const actions = {
       return await this.$axios.$get('/api/post/admin')
     } catch (e) {
       commit('setError', e, {root: true})
+      throw e
     }
   },
   async fetch({commit}) {
@@ -18,6 +17,7 @@ export const actions = {
       return await this.$axios.$get('/api/post')
     } catch (e) {
       commit('setError', e, {root: true})
+      throw e
     }
   },
   async remove({commit}, id) {
@@ -25,6 +25,7 @@ export const actions = {
       return await this.$axios.$delete(`/api/post/admin/${id}`)
     } catch (e) {
       commit('setError', e, {root: true})
+      throw e
     }
   },
   async update({commit}, {id, text}) {
@@ -32,6 +33,7 @@ export const actions = {
       return await this.$axios.$put(`/api/post/admin/${id}`, {text})
     } catch (e) {
       commit('setError', e, {root: true})
+      throw e
     }
   },
   async create({commit}, {title, text, image}) {
@@ -53,6 +55,7 @@ export const actions = {
       return await this.$axios.$get(`/api/post/admin/${id}`)
     } catch (e) {
       commit('setError', e, {root: true})
+      throw e
     }
   },
   async fetchById({commit}, id) {
@@ -60,13 +63,15 @@ export const actions = {
       return await this.$axios.$get(`/api/post/${id}`)
     } catch (e) {
       commit('setError', e, {root: true})
+      throw e
     }
   },
   async addView({commit}, {views, _id}) {
     try {
-      return await this.$axios.$put(`/api/post/add/view/${id}`, {views})
+      return await this.$axios.$put(`/api/post/add/view/${_id}`, {views})
     } catch (e) {
       commit('setError', e, {root: true})
+      throw e
     }
   }
 }
